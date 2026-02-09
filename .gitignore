@@ -9,9 +9,9 @@ build
 .idea
 
 # Generated protobuf artifacts
-generated/
-java-producer/generated/
-python-producer/generated/
+#generated/
+#java-producer/generated/
+#python-producer/generated/
 
 # Python local env/cache
 .venv/
