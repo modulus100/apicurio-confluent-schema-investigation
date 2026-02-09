@@ -46,9 +46,9 @@ public final class CustomerEventProto extends com.google.protobuf.GeneratedFile 
   static {
     java.lang.String[] descriptorData = {
       "\n\037example/v1/customer_event.proto\022\nexamp" +
-      "le.v1\032\033buf/validate/validate.proto\032\030exam" +
-      "ple/v1/address.proto\032\037example/v1/event_m" +
-      "etadata.proto\032\027example/v1/tenant.proto\032\037" +
+      "le.v1\032\030example/v1/address.proto\032\037example" +
+      "/v1/event_metadata.proto\032\027example/v1/ten" +
+      "ant.proto\032\033buf/validate/validate.proto\032\037" +
       "google/protobuf/timestamp.proto\"\232\002\n\017Cust" +
       "omerCreated\022\030\n\002id\030\001 \001(\tB\010\272H\005r\003\260\001\001R\002id\022\035\n" +
       "\005email\030\002 \001(\tB\007\272H\004r\002`\001R\005email\022\'\n\tfull_nam" +
@@ -69,10 +69,10 @@ public final class CustomerEventProto extends com.google.protobuf.GeneratedFile 
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.buf.validate.ValidateProto.getDescriptor(),
           com.example.v1.AddressProto.getDescriptor(),
           com.example.v1.EventMetadataProto.getDescriptor(),
           com.example.v1.TenantProto.getDescriptor(),
+          com.buf.validate.ValidateProto.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
     internal_static_example_v1_CustomerCreated_descriptor =
@@ -88,10 +88,10 @@ public final class CustomerEventProto extends com.google.protobuf.GeneratedFile 
         internal_static_example_v1_EventEnvelope_descriptor,
         new java.lang.String[] { "CustomerCreated", "Metadata", });
     descriptor.resolveAllFeaturesImmutable();
-    com.buf.validate.ValidateProto.getDescriptor();
     com.example.v1.AddressProto.getDescriptor();
     com.example.v1.EventMetadataProto.getDescriptor();
     com.example.v1.TenantProto.getDescriptor();
+    com.buf.validate.ValidateProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();

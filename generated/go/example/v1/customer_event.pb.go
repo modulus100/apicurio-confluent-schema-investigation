@@ -164,7 +164,7 @@ var File_example_v1_customer_event_proto protoreflect.FileDescriptor
 const file_example_v1_customer_event_proto_rawDesc = "" +
 	"\n" +
 	"\x1fexample/v1/customer_event.proto\x12\n" +
-	"example.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18example/v1/address.proto\x1a\x1fexample/v1/event_metadata.proto\x1a\x17example/v1/tenant.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9a\x02\n" +
+	"example.v1\x1a\x18example/v1/address.proto\x1a\x1fexample/v1/event_metadata.proto\x1a\x17example/v1/tenant.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9a\x02\n" +
 	"\x0fCustomerCreated\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12'\n" +

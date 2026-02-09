@@ -22,14 +22,14 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
-from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 from example.v1 import address_pb2 as example_dot_v1_dot_address__pb2
 from example.v1 import event_metadata_pb2 as example_dot_v1_dot_event__metadata__pb2
 from example.v1 import tenant_pb2 as example_dot_v1_dot_tenant__pb2
+from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1f\x65xample/v1/customer_event.proto\x12\nexample.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x65xample/v1/address.proto\x1a\x1f\x65xample/v1/event_metadata.proto\x1a\x17\x65xample/v1/tenant.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9a\x02\n\x0f\x43ustomerCreated\x12\x18\n\x02id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n\x05\x65mail\x18\x02 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05\x65mail\x12\'\n\tfull_name\x18\x03 \x01(\tB\n\xbaH\x07r\x05\x10\x01\x18\xff\x01R\x08\x66ullName\x12\x41\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tcreatedAt\x12\x33\n\x07\x61\x64\x64ress\x18\x05 \x01(\x0b\x32\x19.example.v1.PostalAddressR\x07\x61\x64\x64ress\x12-\n\x06tenant\x18\x06 \x01(\x0b\x32\x15.example.v1.TenantRefR\x06tenant\"\x96\x01\n\rEventEnvelope\x12N\n\x10\x63ustomer_created\x18\x01 \x01(\x0b\x32\x1b.example.v1.CustomerCreatedB\x06\xbaH\x03\xc8\x01\x01R\x0f\x63ustomerCreated\x12\x35\n\x08metadata\x18\x02 \x01(\x0b\x32\x19.example.v1.EventMetadataR\x08metadataB\x7f\n\nexample.v1B\x12\x43ustomerEventProtoP\x01Z\x14\x65xample/v1;examplev1\xa2\x02\x03\x45XX\xaa\x02\nExample.V1\xca\x02\nExample\\V1\xe2\x02\x16\x45xample\\V1\\GPBMetadata\xea\x02\x0b\x45xample::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1f\x65xample/v1/customer_event.proto\x12\nexample.v1\x1a\x18\x65xample/v1/address.proto\x1a\x1f\x65xample/v1/event_metadata.proto\x1a\x17\x65xample/v1/tenant.proto\x1a\x1b\x62uf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9a\x02\n\x0f\x43ustomerCreated\x12\x18\n\x02id\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n\x05\x65mail\x18\x02 \x01(\tB\x07\xbaH\x04r\x02`\x01R\x05\x65mail\x12\'\n\tfull_name\x18\x03 \x01(\tB\n\xbaH\x07r\x05\x10\x01\x18\xff\x01R\x08\x66ullName\x12\x41\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tcreatedAt\x12\x33\n\x07\x61\x64\x64ress\x18\x05 \x01(\x0b\x32\x19.example.v1.PostalAddressR\x07\x61\x64\x64ress\x12-\n\x06tenant\x18\x06 \x01(\x0b\x32\x15.example.v1.TenantRefR\x06tenant\"\x96\x01\n\rEventEnvelope\x12N\n\x10\x63ustomer_created\x18\x01 \x01(\x0b\x32\x1b.example.v1.CustomerCreatedB\x06\xbaH\x03\xc8\x01\x01R\x0f\x63ustomerCreated\x12\x35\n\x08metadata\x18\x02 \x01(\x0b\x32\x19.example.v1.EventMetadataR\x08metadataB\x7f\n\nexample.v1B\x12\x43ustomerEventProtoP\x01Z\x14\x65xample/v1;examplev1\xa2\x02\x03\x45XX\xaa\x02\nExample.V1\xca\x02\nExample\\V1\xe2\x02\x16\x45xample\\V1\\GPBMetadata\xea\x02\x0b\x45xample::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
