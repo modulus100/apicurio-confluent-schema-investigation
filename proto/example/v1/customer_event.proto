@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package example.v1;
+
+import "example/v1/address.proto";
+import "example/v1/event_metadata.proto";
+import "example/v1/tenant.proto";
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+message CustomerCreated {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+  string email = 2 [(buf.validate.field).string.email = true];
+  string full_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 255
+  }];
+  google.protobuf.Timestamp created_at = 4 [(buf.validate.field).required = true];
+  PostalAddress address = 5;
+  TenantRef tenant = 6;
+}
+
+message EventEnvelope {
+  CustomerCreated customer_created = 1 [(buf.validate.field).required = true];
+  EventMetadata metadata = 2;
+}

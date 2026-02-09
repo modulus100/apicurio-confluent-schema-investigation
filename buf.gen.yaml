@@ -1,0 +1,33 @@
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: java_package
+      value: example.v1
+      path: example/v1/customer_event.proto
+    - file_option: java_multiple_files
+      value: true
+      path: example/v1/customer_event.proto
+    - file_option: go_package
+      value: example/v1;examplev1
+      path: example/v1/customer_event.proto
+    - file_option: go_package
+      value: example/v1;examplev1
+      path: example/v1/address.proto
+    - file_option: go_package
+      value: example/v1;examplev1
+      path: example/v1/event_metadata.proto
+    - file_option: go_package
+      value: example/v1;examplev1
+      path: example/v1/tenant.proto
+plugins:
+  - remote: buf.build/protocolbuffers/java
+    out: java-producer/generated/java
+    include_imports: true
+  - remote: buf.build/protocolbuffers/python
+    out: python-producer/generated/python
+    include_imports: true
+  - remote: buf.build/protocolbuffers/go
+    out: generated/go
+    opt:
+      - paths=source_relative

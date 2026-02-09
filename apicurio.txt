@@ -1,0 +1,63 @@
+syntax = "proto3";
+package example.v1;
+
+import "example/v1/address.proto";
+import "example/v1/event_metadata.proto";
+import "example/v1/tenant.proto";
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_package = "example.v1";
+option java_outer_classname = "CustomerEventProto";
+option java_multiple_files = true;
+option go_package = "example/v1;examplev1";
+option objc_class_prefix = "EXX";
+option csharp_namespace = "Example.V1";
+option php_namespace = "Example\\V1";
+option php_metadata_namespace = "Example\\V1\\GPBMetadata";
+option ruby_package = "Example::V1";
+
+message CustomerCreated {
+  string id = 1 [
+    (buf.validate.field) = {
+      string: {
+        uuid: true
+      }
+    },
+    json_name = "id"
+  ];
+  string email = 2 [
+    (buf.validate.field) = {
+      string: {
+        email: true
+      }
+    },
+    json_name = "email"
+  ];
+  string full_name = 3 [
+    (buf.validate.field) = {
+      string: {
+        min_len: 1,
+        max_len: 255
+      }
+    },
+    json_name = "fullName"
+  ];
+  .google.protobuf.Timestamp created_at = 4 [
+    (buf.validate.field) = {
+      required: true
+    },
+    json_name = "createdAt"
+  ];
+  .example.v1.PostalAddress address = 5 [json_name = "address"];
+  .example.v1.TenantRef tenant = 6 [json_name = "tenant"];
+}
+message EventEnvelope {
+  .example.v1.CustomerCreated customer_created = 1 [
+    (buf.validate.field) = {
+      required: true
+    },
+    json_name = "customerCreated"
+  ];
+  .example.v1.EventMetadata metadata = 2 [json_name = "metadata"];
+}
