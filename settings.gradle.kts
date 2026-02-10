@@ -18,3 +18,4 @@ plugins {
 
 rootProject.name = "apicurio-confluent-schema-investigation"
 include("java-producer")
+include("java-producer-plain")
