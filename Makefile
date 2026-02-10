@@ -1,4 +1,4 @@
-.PHONY: buf-deps buf-lint buf-generate up down java-producer python-producer
+.PHONY: buf-deps buf-lint buf-generate up down java-producer java-consumer python-producer go-producer
 
 buf-deps:
 	buf dep update
@@ -18,5 +18,11 @@ down:
 java-producer:
 	./gradlew :java-producer:run
 
+java-consumer:
+	./gradlew :java-producer:runConsumer
+
 python-producer:
 	cd python-producer && uv sync && uv run producer.py
+
+go-producer:
+	go run ./go-producer

@@ -6,12 +6,13 @@ This project now includes:
 2. Buf validation rules via `buf.validate` annotations.
 3. Java Kafka producer using generated protobuf classes + Schema Registry.
 4. Python Kafka producer using generated protobuf classes + Schema Registry.
-5. Docker Compose with:
+5. Go Kafka producer using `confluent-kafka-go` + Schema Registry.
+6. Docker Compose with:
    - Kafka (Confluent, KRaft, no ZooKeeper)
    - Confluent Schema Registry (enabled by default)
    - Apicurio Registry block (commented out, same host port `8081`)
    - Kafbat UI integrated with Kafka + Schema Registry
-6. Topic record name strategy in both producers.
+7. Topic record name strategy in all producers.
 
 ## Structure
 
@@ -23,6 +24,7 @@ This project now includes:
 - `generated/go`: generated Go code.
 - `java-producer/`: Gradle Java producer app.
 - `python-producer/`: Python producer script + `uv`/`pyproject.toml`.
+- `go-producer/`: Go producer using Confluent Kafka client and protobuf payloads.
 - `docker-compose.yml`: local infrastructure stack.
 
 ## Prerequisites
@@ -32,6 +34,9 @@ This project now includes:
 - Java 21 (for Gradle builds)
 - Python 3.10+ (recommended)
 - `uv` installed
+- Go 1.22+ (you already have Go installed)
+- `confluent-kafka-go` uses bundled `librdkafka` by default (no extra install required for this project)
+- Optional (if you switch to dynamic linking): `brew install librdkafka pkg-config`
 
 ## Generate protobuf classes
 
@@ -63,6 +68,19 @@ Optional environment variables:
 - `SCHEMA_REGISTRY_URL` (default `http://localhost:8081`)
 - `KAFKA_TOPIC` (default `customer-events`)
 
+## Run Java consumer
+
+```bash
+./gradlew :java-producer:runConsumer
+```
+
+Optional environment variables:
+
+- `KAFKA_BOOTSTRAP_SERVERS` (default `localhost:29092`)
+- `SCHEMA_REGISTRY_URL` (default `http://localhost:8081`)
+- `KAFKA_TOPIC` (default `customer-events`)
+- `KAFKA_GROUP_ID` (default `java-protobuf-consumer`)
+
 ## Run Python producer
 
 ```bash
@@ -76,6 +94,25 @@ Optional environment variables:
 - `KAFKA_BOOTSTRAP_SERVERS` (default `localhost:29092`)
 - `SCHEMA_REGISTRY_URL` (default `http://localhost:8081`)
 - `KAFKA_TOPIC` (default `customer-events`)
+
+## Run Go producer
+
+```bash
+go mod tidy
+go run ./go-producer
+```
+
+The Go producer now uses Confluent's Protobuf serializer (`confluent-kafka-go` schema-registry serde), and overrides subject naming to match Java's `TopicName-RecordName` (`customer-events-example.v1.EventEnvelope`).
+
+Optional environment variables:
+
+- `KAFKA_BOOTSTRAP_SERVERS` (default `localhost:29092`)
+- `SCHEMA_REGISTRY_URL` (default `http://localhost:8081`)
+- `SCHEMA_REGISTRY_USERNAME` / `SCHEMA_REGISTRY_PASSWORD` (if auth is enabled)
+- `SCHEMA_AUTO_REGISTER` (default `true`)
+- `SCHEMA_NORMALIZE_SCHEMAS` (default `false`)
+- `KAFKA_TOPIC` (default `customer-events`)
+- `SEND_INTERVAL_SECONDS` (default `10`)
 
 ## Switching to Apicurio
 

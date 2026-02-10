@@ -17,17 +17,24 @@ sourceSets {
     }
 }
 
-val bufGenerate by tasks.registering(Exec::class) {
-    group = "protobuf"
-    description = "Generates protobuf classes with buf before compiling Java producer."
-    workingDir = rootProject.projectDir
-    commandLine("buf", "generate")
-}
-
-tasks.named("compileJava") {
-    dependsOn(bufGenerate)
-}
+//val bufGenerate by tasks.registering(Exec::class) {
+//    group = "protobuf"
+//    description = "Generates protobuf classes with buf before compiling Java producer."
+//    workingDir = rootProject.projectDir
+//    commandLine("buf", "generate")
+//}
+//
+//tasks.named("compileJava") {
+//    dependsOn(bufGenerate)
+//}
 
 application {
     mainClass = "org.example.javaproducer.JavaProtobufProducer"
+}
+
+tasks.register<JavaExec>("runConsumer") {
+    group = "application"
+    description = "Runs the Java protobuf Kafka consumer."
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("org.example.javaproducer.JavaProtobufConsumer")
 }

@@ -17,3 +17,7 @@ build
 .venv/
 __pycache__/
 *.pyc
+
+# Go local cache/work dirs used for sandbox-safe builds
+.gocache/
+.gopath/
