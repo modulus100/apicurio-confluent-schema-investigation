@@ -26,7 +26,7 @@ public final class JavaProtobufPlainProducer {
 
     public static void main(String[] args) {
         String bootstrapServers = readEnv("KAFKA_BOOTSTRAP_SERVERS", "localhost:29092");
-        String topic = readEnv("KAFKA_TOPIC", "customer-events");
+        String topic = readEnv("KAFKA_TOPIC", "customer-events-plain");
         long intervalMillis = parseIntervalMillis(readEnv("SEND_INTERVAL_SECONDS", "10"));
 
         Properties props = new Properties();

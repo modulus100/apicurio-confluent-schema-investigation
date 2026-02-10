@@ -54,8 +54,17 @@ services:
       - schema-registry
     ports:
       - "8080:8080"
+    volumes:
+      - ./kafbat-proto:/etc/kafkaui/proto:ro
     environment:
       DYNAMIC_CONFIG_ENABLED: "true"
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:9092"
       KAFKA_CLUSTERS_0_SCHEMAREGISTRY: "http://schema-registry:8081"
+      KAFKA_CLUSTERS_0_DEFAULTKEYSERDE: "String"
+      KAFKA_CLUSTERS_0_DEFAULTVALUESERDE: "SchemaRegistry"
+      KAFKA_CLUSTERS_0_SERDE_0_NAME: "ProtobufFilePlain"
+      KAFKA_CLUSTERS_0_SERDE_0_CLASSNAME: "io.kafbat.ui.serdes.builtin.ProtobufFileSerde"
+      KAFKA_CLUSTERS_0_SERDE_0_TOPICVALUESPATTERN: "^customer-events-plain$"
+      KAFKA_CLUSTERS_0_SERDE_0_PROPERTIES_PROTOBUFFILESDIR: "/etc/kafkaui/proto"
+      KAFKA_CLUSTERS_0_SERDE_0_PROPERTIES_PROTOBUFMESSAGENAME: "example.v1.EventEnvelope"

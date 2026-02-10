@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package example.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+message EventMetadata {
+  string event_id = 1 [(buf.validate.field).string.uuid = true];
+  string source_system = 2 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 120
+  }];
+  string producer = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 120
+  }];
+  google.protobuf.Timestamp occurred_at = 4 [(buf.validate.field).required = true];
+}
