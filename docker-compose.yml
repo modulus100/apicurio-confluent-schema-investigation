@@ -21,18 +21,18 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
 
-  schema-registry:
-    image: confluentinc/cp-schema-registry:latest
-    container_name: schema-registry
-    hostname: schema-registry
-    depends_on:
-      - kafka
-    ports:
-      - "8081:8081"
-    environment:
-      SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_LISTENERS: "http://0.0.0.0:8081"
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "PLAINTEXT://kafka:9092"
+  # schema-registry:
+  #   image: confluentinc/cp-schema-registry:latest
+  #   container_name: schema-registry
+  #   hostname: schema-registry
+  #   depends_on:
+  #     - kafka
+  #   ports:
+  #     - "8081:8081"
+  #   environment:
+  #     SCHEMA_REGISTRY_HOST_NAME: schema-registry
+  #     SCHEMA_REGISTRY_LISTENERS: "http://0.0.0.0:8081"
+  #     SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "PLAINTEXT://kafka:9092"
 
   # schema-registry:
   #   image: apicurio/apicurio-registry:latest-release
@@ -45,6 +45,24 @@ services:
   #   environment:
   #     APICURIO_STORAGE_KIND: "kafkasql"
   #     APICURIO_KAFKASQL_BOOTSTRAP_SERVERS: "kafka:9092"
+
+  schema-registry:
+    image: ghcr.io/aiven-open/karapace:latest
+    container_name: schema-registry
+    hostname: schema-registry
+    command: ["/venv/bin/python", "-m", "karapace"]
+    depends_on:
+      - kafka
+    ports:
+      - "8081:8081"
+    environment:
+      KARAPACE_BOOTSTRAP_URI: "kafka:9092"
+      KARAPACE_HOST: "0.0.0.0"
+      KARAPACE_PORT: "8081"
+      KARAPACE_ADVERTISED_HOSTNAME: "schema-registry"
+      KARAPACE_REGISTRY_HOST: "schema-registry"
+      KARAPACE_REGISTRY: "true"
+      KARAPACE_REST: "false"
 
   kafbat:
     image: ghcr.io/kafbat/kafka-ui:latest

@@ -9,7 +9,8 @@ This project now includes:
 5. Go Kafka producer using `confluent-kafka-go` + Schema Registry.
 6. Docker Compose with:
    - Kafka (Confluent, KRaft, no ZooKeeper)
-   - Confluent Schema Registry (enabled by default)
+   - Karapace Schema Registry (enabled by default)
+   - Confluent Schema Registry block (commented out, same host port `8081`)
    - Apicurio Registry block (commented out, same host port `8081`)
    - Kafbat UI integrated with Kafka + Schema Registry
 7. Topic record name strategy in all producers.
@@ -110,18 +111,18 @@ Optional environment variables:
 - `SCHEMA_REGISTRY_URL` (default `http://localhost:8081`)
 - `SCHEMA_REGISTRY_USERNAME` / `SCHEMA_REGISTRY_PASSWORD` (if auth is enabled)
 - `SCHEMA_AUTO_REGISTER` (default `true`)
-- `SCHEMA_NORMALIZE_SCHEMAS` (default `false`)
+- `SCHEMA_NORMALIZE_SCHEMAS` (default `true`)
 - `KAFKA_TOPIC` (default `customer-events`)
 - `SEND_INTERVAL_SECONDS` (default `10`)
 
-## Switching to Apicurio
+## Switching Registry Option
 
-`docker-compose.yml` currently enables Confluent Schema Registry.
+`docker-compose.yml` currently enables Karapace Schema Registry.
 
 To switch:
 
-1. Comment out active `schema-registry` service (Confluent block).
-2. Uncomment the Apicurio `schema-registry` block.
+1. Comment out active `schema-registry` service block.
+2. Uncomment either the Confluent or Apicurio `schema-registry` block.
 3. Restart the stack:
 
 ```bash
@@ -129,6 +130,6 @@ docker compose down
 docker compose up -d
 ```
 
-Both options use host port `8081`.
+All options use host port `8081`.
 When using Apicurio with Confluent-compatible clients, set:
 `SCHEMA_REGISTRY_URL=http://localhost:8081/apis/ccompat/v7`
